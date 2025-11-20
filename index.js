@@ -1,3 +1,10 @@
+const armWorkouts = []
+const legWorkouts = []
+const abWorkouts = []
+const cardioWorkouts = []
+const flexibilityWorkouts = []
+//each array has 3 levels of difficulty
+//arms, legs, abs, cardio, flexibility
 const bodySectionCheckboxes = document.getElementsByName("bodySections")
 let bodySectionCheckedCount = 0;
 let selectedBodySections = [];
