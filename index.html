@@ -11,10 +11,25 @@
 
 <body>
     <h1 id="welcome-screen">WELCOME!</h1>
+    <h1>Select your workout intensity</h1>
     <div class="workoutIntensityButtons">
-        <button onclick="changeValue()" name = "lowButton">Low</button>
-        <button onclick="changeValue()">Medium</button>
-        <button onclick="changeValue()">High</button>
+        <label>
+            <input type="radio" name="workoutIntensity" value="low">Low Intensity</input>
+        </label>
+        <label>
+            <input type="radio" name="workoutIntensity" value="medium">Medium Intensity</input>
+        </label>
+        <label>
+            <input type="radio" name="workoutIntensity" value="high">High Intensity</input>
+        </label>
+    </div>
+    <h1>Select your body section(s)/workout type(s)</h1>
+    <div class="bodySections">
+        <input type="checkbox" name="bodySections" value="arms">Arms</input>
+        <input type="checkbox" name="bodySections" value="legs">Legs</input>
+        <input type="checkbox" name="bodySections" value="abs">Abs</input>
+        <input type="checkbox" name="bodySections" value="cardio">Cardio</input>
+        <input type="checkbox" name="bodySections" value="flexibility">Flexibility</input>
     </div>
     <!-- 
     main features:
