@@ -13,7 +13,6 @@ const intensityLevel = document.getElementsByName("workoutIntensity")
 let selectedIntensityValue;
 let numReps;
 let numExercises;
-let feederWorkout;
 let finalWorkout;
 
 for (const bodySectionCheckbox of bodySectionCheckboxes) { //finds what values are selected from the checkbox and puts it into an array for future usage 
@@ -34,7 +33,7 @@ for (const bodySectionCheckbox of bodySectionCheckboxes) { //finds what values a
 }
 function getValues() {
     let selectedIntensity = document.querySelector('input[name="workoutIntensity"]:checked')
-    if (selectedIntensity){
+    if (selectedIntensity) {
         selectedIntensityValue = selectedIntensity.value;
     }
     if (selectedIntensity && !selectedBodySections.length == 0) {
@@ -46,7 +45,7 @@ function getValues() {
     }
 }
 function generateWorkout() {
-    if (!getValues()){
+    if (!getValues()) {
         return
     }
     switch (selectedIntensityValue) {
@@ -64,7 +63,8 @@ function generateWorkout() {
             break
 
     }
-    for (section of selectedBodySections){
+    for (let section of selectedBodySections) {
+        let feederWorkout;
         switch (section) {
             case "upperBody":
                 feederWorkout = upperBodyWorkouts
@@ -82,18 +82,10 @@ function generateWorkout() {
                 feederWorkout = flexibilityWorkouts
                 break
         }
-        let workoutProcessing = []
-        for (let i = 0; i < numExercises; i++){
-            let newExercise = Math.floor(Math.random() * feederWorkout.length)
-            for (i of workoutProcessing){
-                if (newExercise === i){
-                    i = 0
-                    break
-                }
-            }
-        }
+        let chosenExercises = []
+
     }
 
-    
+
     console.log(`Successful Execution of generateWorkout ${selectedBodySections}, ${selectedIntensityValue}`)
 }
