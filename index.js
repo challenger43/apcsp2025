@@ -1,8 +1,8 @@
-const armWorkouts = []
-const legWorkouts = []
-const abWorkouts = []
-const cardioWorkouts = []
-const flexibilityWorkouts = []
+const upperBodyWorkouts = ["tricep dips", "arm circles", "pushups", "arm front raises", "arm lateral raises"]
+const legWorkouts = ["bodyweight squats", "lunge/reverse lunges", "calf raises", "step ups", "straight leg raises"]
+const abWorkouts = ["situps", "curl up/crunches", "oblique heel touches", "mountain climbers", "Russian Twist"]
+const cardioEnduranceWorkouts = ["high knees", "jog(in place)", "upper arm plank", "forearm plank", "squat hold"]
+const flexibilityWorkouts = ["hamstring stretch", "downward dog", "quad stretch", "butterfly stretch", "hip stretch"]
 //each array has 3 levels of difficulty
 //arms, legs, abs, cardio, flexibility
 const bodySectionCheckboxes = document.getElementsByName("bodySections")
@@ -11,6 +11,10 @@ let selectedBodySections = [];
 const maxBodySectionCheckables = 3;
 const intensityLevel = document.getElementsByName("workoutIntensity")
 let selectedIntensityValue;
+let numReps;
+let numExercises;
+let feederWorkout;
+let finalWorkout;
 
 for (const bodySectionCheckbox of bodySectionCheckboxes) { //finds what values are selected from the checkbox and puts it into an array for future usage 
     bodySectionCheckbox.addEventListener("change", function () {
@@ -29,7 +33,7 @@ for (const bodySectionCheckbox of bodySectionCheckboxes) { //finds what values a
     });
 }
 function getValues() {
-    const selectedIntensity = document.querySelector('input[name="workoutIntensity"]:checked')
+    let selectedIntensity = document.querySelector('input[name="workoutIntensity"]:checked')
     if (selectedIntensity){
         selectedIntensityValue = selectedIntensity.value;
     }
@@ -45,5 +49,51 @@ function generateWorkout() {
     if (!getValues()){
         return
     }
+    switch (selectedIntensityValue) {
+        case "low":
+            numReps = 5
+            numExercises = 1
+            break
+        case "medium":
+            numReps = 15
+            numExercises = 3
+            break
+        case "high":
+            numReps = 25
+            numExercises = 5
+            break
+
+    }
+    for (section of selectedBodySections){
+        switch (section) {
+            case "upperBody":
+                feederWorkout = upperBodyWorkouts
+                break
+            case "legs":
+                feederWorkout = legWorkouts
+                break
+            case "abs":
+                feederWorkout = abWorkouts
+                break
+            case "endurance":
+                feederWorkout = cardioEnduranceWorkouts
+                break
+            case "flexibility":
+                feederWorkout = flexibilityWorkouts
+                break
+        }
+        let workoutProcessing = []
+        for (let i = 0; i < numExercises; i++){
+            let newExercise = Math.floor(Math.random() * feederWorkout.length)
+            for (i of workoutProcessing){
+                if (newExercise === i){
+                    i = 0
+                    break
+                }
+            }
+        }
+    }
+
+    
     console.log(`Successful Execution of generateWorkout ${selectedBodySections}, ${selectedIntensityValue}`)
 }
