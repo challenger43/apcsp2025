@@ -14,6 +14,9 @@ let selectedIntensityValue;
 let numReps;
 let numExercises;
 let finalWorkout;
+const para1 = document.getElementById("para1")
+const para2 = document.getElementById("para2")
+const para3 = document.getElementById("para3")
 
 for (const bodySectionCheckbox of bodySectionCheckboxes) { //finds what values are selected from the checkbox and puts it into an array for future usage 
     bodySectionCheckbox.addEventListener("change", function () {
@@ -61,10 +64,14 @@ function generateWorkout() {
             numReps = 25
             numExercises = 5
             break
-
     }
+    let tempArray = []
+    let tempValue;
+    let feederWorkout
+    let numGenerated = 0
+    let paraNum;
     for (let section of selectedBodySections) {
-        let feederWorkout;
+        numGenerated += 1
         switch (section) {
             case "upperBody":
                 feederWorkout = upperBodyWorkouts
@@ -82,10 +89,26 @@ function generateWorkout() {
                 feederWorkout = flexibilityWorkouts
                 break
         }
-        let chosenExercises = []
-
+        let lenArray = feederWorkout.length
+        for (let i = 0; i < lenArray; i++){
+            tempValue = feederWorkout[Math.floor(Math.random()*feederWorkout.length)]
+            tempArray.push(tempValue)
+            feederWorkout = feederWorkout.filter(value => value !== tempValue)
+        }
+        for (let i = 0; i < numExercises; i++){
+            feederWorkout.push(tempArray.pop())
+            console.log(feederWorkout)
+        }
+        switch (numGenerated){
+            case "1":
+                paraNum = para1
+                break
+            case "2":
+                paraNum = para2
+                break
+            case "3":
+                paraNum = para3
+                break
+        }
     }
-
-
-    console.log(`Successful Execution of generateWorkout ${selectedBodySections}, ${selectedIntensityValue}`)
 }
