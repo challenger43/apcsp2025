@@ -28,15 +28,10 @@ for (const bodySectionCheckbox of bodySectionCheckboxes) { //finds what values a
             selectedBodySections = selectedBodySections.filter(value => value !== this.value); // Remove from array if unchecked, for each value if the value doesn't equal the value that is checked/ want to remove
             //it will evaluate to true and those that are true and put it into a new array, which will then be assigned to the same selectedBodySections array. 
         }
-        console.log(selectedBodySections);
     });
 }
-function getValues() {
-    let selectedIntensity = document.querySelector('input[name="workoutIntensity"]:checked')
-    if (selectedIntensity) {
-        selectedIntensityValue = selectedIntensity.value;
-    }
-    if (selectedIntensity && !selectedBodySections.length == 0) {
+function getValues(intensityLevel) {
+    if (intensityLevel && selectedBodySections.length !== 0) {
         return true
     }
     else {
@@ -44,10 +39,15 @@ function getValues() {
         return false
     }
 }
-function generateWorkout() {
-    if (!getValues()) {
+function getSelectedIntensity() {
+    let selected = document.querySelector('input[name="workoutIntensity"]:checked');
+    return selected ? selected.value : null;
+}
+function generateWorkout(intensity) {
+    if (!getValues(intensity)) {
         return
     }
+    selectedIntensityValue = intensity
     para1.innerHTML = ""
     switch (selectedIntensityValue) {
         case "low":
@@ -100,10 +100,10 @@ function generateWorkout() {
             console.log(feederWorkout)
         }
         if (workoutType === "reps") {
-            para1.innerHTML += `<h1>Body Section: ${section},</h1> <h2>Exercises:</h2> <p>Reps: ${numReps}</p> <p>${feederWorkout}</p>`
+            para1.innerHTML += `<h1>Body Section: ${section}</h1> <h2>Exercises:</h2> <p>Reps: ${numReps}</p> <p>${feederWorkout.join(", ")}</p>`
         }
         else {
-            para1.innerHTML += `<h1>Body Section: ${section},</h1> <h2>Exercises:</h2> <p>Time: ${numReps} seconds</p> <p>${feederWorkout}</p>`;
+            para1.innerHTML += `<h1>Body Section: ${section}</h1> <h2>Exercises:</h2> <p>Time: ${numReps} seconds</p> <p>${feederWorkout.join(", ")}</p>`;
         }
     }
 }

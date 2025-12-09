@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +7,9 @@
     <link>
     <title>Workout Generator</title>
 </head>
-
 <body>
     <h1 id="welcome-screen">WELCOME!</h1>
-    <h1>Select your workout intensity</h1>
+    <h1>Select your workout intensity:</h1>
     <div class="workoutIntensityButtons">
         <label>
             <input type="radio" name="workoutIntensity" value="low">Low Intensity</input>
@@ -23,16 +21,28 @@
             <input type="radio" name="workoutIntensity" value="high">High Intensity</input>
         </label>
     </div>
-    <h1>Select your body section(s)/workout type(s)</h1>
+    <h1>Select your body section(s)/workout type(s):</h1>
     <div class="bodySections">
-        <input type="checkbox" name="bodySections" value="upperBody">Upper Body</input>
-        <input type="checkbox" name="bodySections" value="legs">Legs</input>
-        <input type="checkbox" name="bodySections" value="abs">Abs</input>
-        <input type="checkbox" name="bodySections" value="endurance">Endurance/Cardio</input>
-        <input type="checkbox" name="bodySections" value="flexibility">Flexibility</input>
+        <label>
+            <input type="checkbox" name="bodySections" value="upperBody">Upper Body</input>
+        </label>
+        <label>
+            <input type="checkbox" name="bodySections" value="legs">Legs</input>
+        </label>
+        <label>
+            <input type="checkbox" name="bodySections" value="abs">Abs</input>
+        </label>
+        <label>
+            <input type="checkbox" name="bodySections" value="endurance">Endurance/Cardio</input>
+        </label>
+        <label>
+            <input type="checkbox" name="bodySections" value="flexibility">Flexibility</input>
+        </label>
     </div>
-    <button onclick = "generateWorkout()" id="generateWorkoutButton">Generate Workout</button>
-    <div id = "para1"></div>
+    <div class="button-container">
+    <button onclick="generateWorkout(getSelectedIntensity())" id="generateWorkoutButton">Generate Workout</button>
+    </div>
+    <div id="para1"></div>
     <!-- 
     main features:
     function a)
